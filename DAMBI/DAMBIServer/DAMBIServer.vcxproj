@@ -140,9 +140,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ClientObject.h" />
+    <ClInclude Include="LogicQueue.h" />
     <ClInclude Include="MainConfig.h" />
     <ClInclude Include="extern.h" />
     <ClInclude Include="Logger.h" />
+    <ClInclude Include="Protocols.h" />
     <ClInclude Include="ServerObject.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="threads.h" />
@@ -150,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="AcceptThread.cpp" />
     <ClCompile Include="ClientObject.cpp" />
+    <ClCompile Include="LogicQueue.cpp" />
     <ClCompile Include="MainConfig.cpp" />
     <ClCompile Include="extern.cpp" />
     <ClCompile Include="Logger.cpp" />

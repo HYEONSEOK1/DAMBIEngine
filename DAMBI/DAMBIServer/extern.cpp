@@ -1,7 +1,7 @@
 #include "extern.h"
 #include "Logger.h"
 
-std::queue<int>* LogicQueue;
+LogicQueue* pLogicQueue;
 ServerObject* pServerObject;
 MainConfig* pMainConfig;
 Logger Log;

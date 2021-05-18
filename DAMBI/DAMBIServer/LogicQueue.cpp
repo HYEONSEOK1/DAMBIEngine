@@ -6,15 +6,15 @@ LogicQueue::LogicQueue()
 }
 bool LogicQueue::isEmpty()
 {
-    return LogicQ.empty();
+    return Logicqueue.empty();
 }
 
 void LogicQueue::Pop()
 {
     mtx.lock();
-    if (!LogicQ.empty())
+    if (!Logicqueue.empty())
     {
-        LogicQ.pop();
+        Logicqueue.pop();
     }
     mtx.unlock();
 }
@@ -22,6 +22,6 @@ void LogicQueue::Pop()
 void LogicQueue::Push(int* data)
 {
     mtx.lock();
-    LogicQ.push(data);
+    Logicqueue.push(data);
     mtx.unlock();
 }

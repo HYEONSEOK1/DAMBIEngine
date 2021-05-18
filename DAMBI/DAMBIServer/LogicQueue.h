@@ -4,7 +4,7 @@
 class LogicQueue {
 private:
 	std::mutex mtx;
-	std::queue<int*> LogicQ;
+	std::queue<int*> Logicqueue;
 public:
 	LogicQueue();
 	bool isEmpty();

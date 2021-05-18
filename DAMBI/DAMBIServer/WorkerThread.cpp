@@ -2,11 +2,51 @@
 #include "stdafx.h"
 #include "MainConfig.h"
 #include "ClientObject.h"
-typedef struct message {
-	int number;
-	int age;
-	char packet[10];
-}message;
+#include "Protocols.h"
+#include "LogicQueue.h"
+#include <list>
+typedef struct RECV_MSG
+{
+	int		flag;
+	ClientObject* pClientObject;
+	stOverEx* ExData;
+	int		Size;
+}RECV_MSG;
+std::list<RECV_MSG*> RecvQueue;
+std::mutex RecvQueueMutex;
+void AddRecvQueue(int flag, ClientObject* pClientObject, stOverEx* ExData, int Size)
+{
+	RECV_MSG* pRecv = new RECV_MSG;
+	
+	pRecv->flag = flag;
+	pRecv->pClientObject = pClientObject;
+	pRecv->ExData = ExData;
+	pRecv->Size = Size;
+
+	RecvQueueMutex.lock();
+	RecvQueue.push_back(pRecv);
+	RecvQueueMutex.unlock();
+}
+void RecvThread()
+{
+	while (1)
+	{
+		if (!RecvQueue.empty())
+		{
+			RecvQueueMutex.lock();
+			RECV_MSG* pRecv = RecvQueue.front();
+			RecvQueueMutex.unlock();
+
+			ClientObject* pClientObject = pRecv->pClientObject;
+			stOverEx* ExData = pRecv->ExData;
+			//pLogicQueue->Push(0, PACKET_SEND, pClientObject, ExData);
+		}
+		else
+		{
+			std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		}
+	}
+}
 void WorkerThread(HANDLE hIOCP) {
 
 	HANDLE IoCompletionPort = (HANDLE)hIOCP;
@@ -35,7 +75,7 @@ void WorkerThread(HANDLE hIOCP) {
 				}
 				else
 				{
-					message mes;
+					AddRecvQueue(0, pClientObject, ExData, IocpSize);
 					
 				}
 			}

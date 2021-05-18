@@ -2,6 +2,8 @@
 #include <queue>
 class ServerObject;
 class MainConfig;
-extern std::queue<int>* LogicQueue;
+class LogicQueue;
+
+extern LogicQueue* pLogicQueue;
 extern ServerObject* pServerObject;
 extern MainConfig* pMainConfig;

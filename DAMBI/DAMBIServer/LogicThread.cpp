@@ -1,17 +1,14 @@
 #include "extern.h"
 #include "stdafx.h"
 #include "MainConfig.h"
+#include "LogicQueue.h"
 void LogicThread() {
 	while (true) {
 	
-		if (!LogicQueue->empty())
+		if (!pLogicQueue->isEmpty())
 		{
-			int data = LogicQueue->front();
-			LogicQueue->pop();
-			std::cout << data;
+			pLogicQueue->Pop();
 		}
-		if (pMainConfig->getThreadEnd())
-			break;
 		std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
 	}

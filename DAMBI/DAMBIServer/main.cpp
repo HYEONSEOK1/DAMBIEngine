@@ -4,6 +4,7 @@
 #include "ServerObject.h"
 #include "MainConfig.h"
 #include "windows.h"
+#include "LogicQueue.h"
 
 void Init()
 {
@@ -23,7 +24,7 @@ void Init()
 }
 void InitQueue()
 {
-	LogicQueue = new std::queue<int>;
+	pLogicQueue = new LogicQueue;
 }
 
 void InitThread()

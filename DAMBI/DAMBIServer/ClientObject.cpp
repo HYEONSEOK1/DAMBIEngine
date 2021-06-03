@@ -6,6 +6,7 @@ ClientObject::ClientObject()
 {
 	memset(&RecvBuffer.m_wsaOver, 0, sizeof(WSAOVERLAPPED));
 	pRecvBuffer = new BYTE[G_MAX_NETWORK_LENGTH];
+	m_nRecvLength = 0;
 }
 
 ClientObject::~ClientObject()

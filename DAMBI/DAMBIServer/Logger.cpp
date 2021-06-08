@@ -9,6 +9,7 @@
 #include <mutex>
 #include <queue>
 #include "extern.h"
+#include <stdarg.h>
 
 
 Logger::Logger()
@@ -65,6 +66,8 @@ void Logger::LogWrite()
         const char* fileMsg = msg.c_str();
         LogQueue.pop();
         filestream->write(fileMsg, strlen(fileMsg));
+
+        filestream->flush();
         /*std::vector<char> writable(msg.begin(), msg.end());
         writable.push_back('\0');
         char* fileMsg = &writable[0];
@@ -75,6 +78,12 @@ void Logger::LogWrite()
 }
 void Logger::LogPush(const char* funcName, int line, int lv, const char* str, ...)
 {
+    va_list Ap;
+    char Buffer[1024];
+    memset(Buffer, 0, sizeof(Buffer));
+    va_start(Ap, str);
+    vsprintf(Buffer, str, Ap);
+    va_end(Ap);
     char* result = NULL;
     char level[10];
     switch (lv)
@@ -88,7 +97,7 @@ void Logger::LogPush(const char* funcName, int line, int lv, const char* str, ..
     }
 
     result = (char*)malloc(sizeof(char) * (21 + strlen(funcName) + strlen(str) + 30));
-    sprintf(result, "%s %s [%s:%d] : %s", level, getTimestamp().c_str(), funcName, line, str);
+    sprintf(result, "%s %s [%s:%d] : %s", level, getTimestamp().c_str(), funcName, line, Buffer);
     mtx.lock();
     LogQueue.push(result);
     mtx.unlock();

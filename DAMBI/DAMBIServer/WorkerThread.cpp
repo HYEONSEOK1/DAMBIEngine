@@ -48,12 +48,13 @@ void RecvThread()
 			RECV_MSG* pRecv = RecvQueue.front();
 			RecvQueue.pop_front();
 			RecvQueueMutex.unlock();
+		
 
 			ClientObject* pClientObject = pRecv->pClientObject;
 			stOverEx* ExData = pRecv->ExData;
 			pClientObject->m_nRecvLength += pRecv->Size;
 			
-
+			LOG_INFO("  [RECV] CMD_PACKET(0x0001), len:30] [FROM] [UserIndex:%d]", pClientObject->unuserIndex);
 
 			BOOL bMoveFoward = FALSE;
 			BYTE* pRead = pClientObject->pRecvBuffer;
@@ -101,7 +102,7 @@ void RecvThread()
 		}
 		else
 		{
-			std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			std::this_thread::sleep_for(std::chrono::milliseconds(1));
 		}
 	}
 }
@@ -131,7 +132,7 @@ void WorkerThread(HANDLE hIOCP) {
 			{
 				if (IocpSize == 0)
 				{
-					std::cout << "error" << std::endl;
+					pMainConfig->count--;
 				}
 				else
 				{

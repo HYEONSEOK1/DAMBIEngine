@@ -6,9 +6,7 @@
 void AcceptThread(SOCKET ServerSocket) {
 	while (!pMainConfig->getThreadEnd()) {
 		ClientObject* cObject = NULL;
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
-
-
+	
 		SOCKET Socket;
 		struct sockaddr_in ClientAddr;
 		int ClientAddrSize = sizeof(ClientAddr);
@@ -23,8 +21,10 @@ void AcceptThread(SOCKET ServerSocket) {
 		UINT ClientPort;
 		strClientAddr = inet_ntoa(ClientAddr.sin_addr);
 		ClientPort = ntohs(ClientAddr.sin_port);
+		pMainConfig->count++;
+		LOG_INFO("==== [ACCEPT] ==== IP=%s, PORT=%u)", strClientAddr.c_str(), ClientPort);
 		cObject->SetClientSocket(Socket);
-		cObject->SetClientInfo(strClientAddr, ClientPort);
+		cObject->SetClientInfo(strClientAddr, ClientPort, pMainConfig->count);
 		cObject->SetRecvStatus();
 	}
 }

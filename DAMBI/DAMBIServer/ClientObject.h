@@ -17,6 +17,7 @@ private:
 	stOverEx RecvBuffer;
 	
 public:
+	UINT unuserIndex;
 	BYTE* pRecvBuffer;
 	UINT m_nRecvLength;		
 	ClientObject();
@@ -31,7 +32,7 @@ public:
 	}
 	SOCKET GetClientSocket() { return Socket; };
 	void SetClientSocket(SOCKET ClientSocket);
-	void SetClientInfo(const std::string Addr, const UINT Port);
+	void SetClientInfo(const std::string Addr, const UINT Port, int userIndex);
 	void SetRecvStatus();
 };
 

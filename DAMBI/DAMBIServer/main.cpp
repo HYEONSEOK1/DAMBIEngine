@@ -86,6 +86,13 @@ int main()
 	{
 		while (!pMainConfig->getThreadEnd())
 		{
+			int option;
+			std::cin >> option;
+			switch (option)
+			{
+			case 1:
+				std::cout << "현재 인원수 : " << pMainConfig->count << std::endl;
+			}
 			std::this_thread::sleep_for(std::chrono::milliseconds(100));
 		}
 	}

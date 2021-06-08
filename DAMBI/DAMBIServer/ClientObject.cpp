@@ -18,10 +18,11 @@ void ClientObject::SetClientSocket(SOCKET ClientSocket)
 	Socket = ClientSocket;
 }
 
-void ClientObject::SetClientInfo(const std::string Addr, const UINT Port)
+void ClientObject::SetClientInfo(const std::string Addr, const UINT Port, int userIndex)
 {
 	strClientAddr = Addr;
 	ClientPort = Port;
+	unuserIndex = userIndex;
 }
 
 void ClientObject::SetRecvStatus()

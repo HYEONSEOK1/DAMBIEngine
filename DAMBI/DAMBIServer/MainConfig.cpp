@@ -5,6 +5,7 @@
 MainConfig::MainConfig()
 {
 	ThreadEnd = false;
+	count = 0;
 }
 
 void MainConfig::setThreadEnd()

@@ -6,6 +6,7 @@ private:
 	
 	std::vector<std::thread*> WorkerThreadList;
 public:
+	int count;
 	std::vector<std::thread*> ThreadList;
 	MainConfig();
 	void setThreadEnd();

@@ -15,8 +15,10 @@ private:
 	std::string strClientAddr;
 	UINT ClientPort;
 	stOverEx RecvBuffer;
-	BYTE *pRecvBuffer;
+	
 public:
+	BYTE* pRecvBuffer;
+	UINT m_nRecvLength;		
 	ClientObject();
 	~ClientObject();
 	OVERLAPPED* GetOverlapped() {
@@ -27,6 +29,7 @@ public:
 		RecvBuffer.m_wsaBuf.len = unLen;
 		return &(RecvBuffer.m_wsaBuf);
 	}
+	SOCKET GetClientSocket() { return Socket; };
 	void SetClientSocket(SOCKET ClientSocket);
 	void SetClientInfo(const std::string Addr, const UINT Port);
 	void SetRecvStatus();

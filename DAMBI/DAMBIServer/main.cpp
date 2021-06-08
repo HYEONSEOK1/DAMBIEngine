@@ -19,8 +19,6 @@ void Init()
 		return;
 	}
 	pServerObject->CreateIocpPort();
-
-
 }
 void InitQueue()
 {
@@ -48,9 +46,11 @@ void InitThread()
 	for (int i = 0; i < 1; i++)
 	{
 		Worker = new std::thread(WorkerThread, pServerObject->GetIocpPort());
+		pMainConfig->ThreadList.push_back(Worker);
 	}
-
 }
+
+
 BOOL WINAPI CtrlHandler(DWORD signal) {
 
 	if (signal == CTRL_C_EVENT)

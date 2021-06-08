@@ -15,7 +15,7 @@ void AcceptThread(SOCKET ServerSocket) {
 		Socket = WSAAccept(ServerSocket, (struct sockaddr*)&ClientAddr, &ClientAddrSize, NULL, NULL);
 		if (Socket == INVALID_SOCKET) {
 		
-			std::cout << "Accept Fail " << WSAGetLastError() << std::endl;
+			LOG_ERROR("Accept Fail!");
 			continue;
 		}
 		cObject = new ClientObject;
@@ -26,7 +26,6 @@ void AcceptThread(SOCKET ServerSocket) {
 		cObject->SetClientSocket(Socket);
 		cObject->SetClientInfo(strClientAddr, ClientPort);
 		cObject->SetRecvStatus();
-	
 	}
 }
 

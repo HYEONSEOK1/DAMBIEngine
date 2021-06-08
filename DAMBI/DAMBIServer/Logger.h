@@ -15,6 +15,7 @@ private:
     std::string getTimestamp();
     std::mutex mtx;
     std::ofstream *filestream;
+    
    
 public:
     Logger();

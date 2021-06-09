@@ -74,6 +74,34 @@ if (!pServerObject->CreateSocket("your own IP", your own Port num))
 
 How can I Customize my own Server?
 -----------------
+* In case of CPU acceleration, the number of worker threads can be set as sysinfo.dwNumberOfProcessors*2.
+```bash
+std::thread* Worker;
+	for (int i = 0; i < sysinfo.dwNumberOfProcessors; i++)
+	{
+		Worker = new std::thread(WorkerThread, pServerObject->GetIocpPort());
+		pMainConfig->ThreadList.push_back(Worker);
+	}
+```
+
+* Set Socket Buffer Size
+```bash
+int nSockBufSize = 8192; 
+	setsockopt(Socket, SOL_SOCKET, SO_SNDBUF, (const char*)&nSockBufSize, sizeof(nSockBufSize));
+
+```
+
+* client socket buffer size(NETWORK LENGTH)
+```bash
+const int G_MAX_NETWORK_LENGTH = (1024 * 1024);	
+
+```
+
+* change your queue(std::queue or tbb::concurrent_priority_queue)
+```bash
+tbb::concurrent_priority_queue<QueueCapsule*, std::greater<int>> Logicqueue;
+std::queue<QueueCapsule*> Logicqueue;
+```
 
 
 Demo Play
@@ -83,8 +111,6 @@ Demo Play
   <img src="https://github.com/HYEONSEOK1/DAMBIEngine/blob/main/Resources/result1.PNG"><br><br>
   <img src="https://github.com/HYEONSEOK1/DAMBIEngine/blob/main/Resources/result2.PNG"><br><br>
 </div>
-
-
 
 
 Support

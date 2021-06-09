@@ -103,6 +103,55 @@ tbb::concurrent_priority_queue<QueueCapsule*, std::greater<int>> Logicqueue;
 std::queue<QueueCapsule*> Logicqueue;
 ```
 
+* How to use lock-free-queue
+```bash
+#include <iostream>
+#include <tbb/parallel_for.h>
+#include <tbb/concurrent_queue.h>
+ 
+int _tmain(int argc, _TCHAR* argv[])
+{
+    tbb::concurrent_queue<int> queue;
+ 
+
+    queue.push(i);
+ 
+    int num;
+    while (queue.try_pop(num))
+        std::cout << num << " ";
+ 
+    return 0;
+}
+```
+
+* You can create your own protocol by adding commands and structs.
+```bash
+#pragma once
+typedef enum CMD
+{
+	PACKET_SEND = 0x0001,
+};
+typedef struct S_PACKET_HEADER
+{
+	USHORT	unCmd;
+	UINT	unLen;
+	S_PACKET_HEADER() {
+		ZeroMemory(this, sizeof(S_PACKET_HEADER));
+	}
+} S_PACKET_HEADER, * PS_PACKET_HEADER;
+
+typedef struct PACKET {
+	int number;
+	int age;
+	char packet[10];
+	PACKET() { Init(); }
+	void Init()
+	{
+		memset(this,0, sizeof(PACKET));
+	}
+}PACKET;
+```
+
 * To add Log for debugging
 
 ```bash

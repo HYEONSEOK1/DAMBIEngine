@@ -1,4 +1,4 @@
-# DAMBIEngine
+# DAMBI Engine
 <div align="center">
   <img src="https://github.com/HYEONSEOK1/DAMBIEngine/blob/main/Resources/Dmabi.png"><br><br>
 </div>
@@ -101,6 +101,15 @@ const int G_MAX_NETWORK_LENGTH = (1024 * 1024);
 ```bash
 tbb::concurrent_priority_queue<QueueCapsule*, std::greater<int>> Logicqueue;
 std::queue<QueueCapsule*> Logicqueue;
+```
+
+* To add Log for debugging
+
+```bash
+LOG_DEBUG("Error msg");		//print debug
+LOG_ERROR("Error msg");		//print error
+LOG_FATAL("Error msg");		//print fatal
+LOG_INFO("Error msg");		//print info
 ```
 
 

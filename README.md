@@ -16,6 +16,12 @@ Introduction
   * IOCP - Windows I/O model with great performance.
  
   * Lock-free Queue - C++ template libraries for multi-core processor.
+
+Who needs Dambi?
+-----------------
+* who has difficulty with starting game server
+* who wnats to make multi-player game with his local device
+* everyone who is interested in developing game! 
  
  What can I do with Dambi?
 -----------------
@@ -53,9 +59,22 @@ Plaese download the project and build through IDE.
 * Build a project to make .exe file
 <img src="https://github.com/HYEONSEOK1/DAMBIEngine/blob/main/Resources/install6.png"><br><br>
 
+How can I Customize my own Server?
+-----------------
+
+
+Demo Play
+-----------------
+
+
 
 Support
 -----------------
+[contributing.md](https://github.com/HYEONSEOK1/DAMBIEngine/blob/main/Contributing.md)
+
+Contact
+-----------------
+[E-mail Us!](simon365@naver.com)
 
 License
 -----------------

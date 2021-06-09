@@ -124,6 +124,50 @@ int _tmain(int argc, _TCHAR* argv[])
 }
 ```
 
+* You can change the overlapped struct your way.
+```bash
+	BYTE* pRecvBuffer;
+	UINT m_nRecvLength;
+	OVERLAPPED* GetOverlapped() {
+		return &(RecvBuffer.m_wsaOver);
+	}
+	WSABUF* GetWsaBuf(LPBYTE pBuff, UINT unLen) {
+		RecvBuffer.m_wsaBuf.buf = (char*)pBuff;
+		RecvBuffer.m_wsaBuf.len = unLen;
+		return &(RecvBuffer.m_wsaBuf);
+	}
+```
+
+* You can customize it by adding your own threads.
+```bash
+#pragma once
+void LogicThread();
+void LogThread();
+void WorkerThread(HANDLE hIOCP);
+void AcceptThread(SOCKET ServerSocket);
+```
+
+* Except for winsock, standard C++ is used, so you can make it work on other operating systems if you want. (For example on Linux, just add epoll)
+```bash
+stdafx.h
+#pragma once
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <conio.h>
+#include <string>
+#include <queue>
+#include <mutex>
+#include <tbb/parallel_for.h>
+#include <tbb/concurrent_queue.h>
+#include <fstream>
+#include <iomanip>
+#include <ctime>
+#include <WinSock2.h>
+#include "Logger.h"
+```
+
+
 * You can create your own protocol by adding commands and structs.
 ```bash
 #pragma once

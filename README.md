@@ -56,6 +56,19 @@ Plaese download the project and build through IDE.
   <img src="https://github.com/HYEONSEOK1/DAMBIEngine/blob/main/Resources/install5.png"><br><br>
 </div>
 
+
+* Fill your own server IP & Port
+
+```bash
+//main.init()
+if (!pServerObject->CreateSocket("your own IP", your own Port num))
+{
+	LOG_ERROR("Create Server Socket Error");
+	return;
+}
+```
+
+
 * Build a project to make .exe file
 <img src="https://github.com/HYEONSEOK1/DAMBIEngine/blob/main/Resources/install6.png"><br><br>
 
@@ -65,6 +78,12 @@ How can I Customize my own Server?
 
 Demo Play
 -----------------
+* Capture Images of Playing [demo](https://github.com/HYEONSEOK1/DAMBIEngine/tree/main/Test_Case) for dummy Client
+<div align="center">
+  <img src="https://github.com/HYEONSEOK1/DAMBIEngine/blob/main/Resources/result1.PNG"><br><br>
+  <img src="https://github.com/HYEONSEOK1/DAMBIEngine/blob/main/Resources/result2.PNG"><br><br>
+</div>
+
 
 
 

@@ -123,6 +123,13 @@ int _tmain(int argc, _TCHAR* argv[])
     return 0;
 }
 ```
+* Comparison of logicQueue speed by number of workerthreads (unit: ms)  
+
+
+||1|2|4|8|
+|------|---|---|---|---|
+|std lock(mutex)|4782|8468|12535|17151|
+|lock-free(tbb)|5389|5215|4318|2671
 
 * You can change the overlapped struct your way.
 ```bash
